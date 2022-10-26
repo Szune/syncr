@@ -1,0 +1,13 @@
+[package]
+name = "syncr"
+version = "0.1.0"
+authors = ["Szune <erikiwarson@gmail.com>"]
+edition = "2018"
+license = "AGPL-3.0-or-later"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+aeon = "0.3.1"
+aeon_derive = "0.2.0"
+globber = { git = "https://github.com/Szune/globber-rs" }

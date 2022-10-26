@@ -1,0 +1,11 @@
+/.idea
+/target
+/synctest
+build.lb
+
+*.aeon
+!config.aeon
+*.exe
+*.txt
+*.vim
+

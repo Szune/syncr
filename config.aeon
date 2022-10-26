@@ -1,0 +1,173 @@
+@syncprofile(name, skip_folders, skip_files)
+@heuristic(value, weight)
+@projecttype(name, folders, files)
+
+heuristic_skip_folders: [".git", "target", "bin", "obj", "node_modules", ".idea"]
+
+global_profile: syncprofile("global",
+	[".idea"],
+	[
+		"*.swp",
+		"*.un~",
+	])
+
+profiles: [
+	syncprofile("<undetermined>", [], []),
+	syncprofile("C",
+		[],
+		[]),
+	syncprofile("CSharp",
+		[
+			"bin",
+			"obj"
+		],
+		[]),
+	syncprofile("D",
+		[".dub"],
+		[]),
+	syncprofile("Dart",
+		[],
+		[]),
+	syncprofile("FSharp",
+		[
+			"bin",
+			"obj"
+		],
+		[]),
+	syncprofile("Go",
+		[],
+		[]),
+	syncprofile("JavaScript",
+		["node_modules"],
+		[]),
+	syncprofile("Kotlin",
+		["build"],
+		[]),
+	syncprofile("PowerShell",
+		[],
+		[]),
+	syncprofile("Reason",
+		[],
+		[]),
+	syncprofile("Rust",
+		[
+			"target"
+		],
+		[]),
+	syncprofile("Zig",
+		["zig-cache", "zig-out"],
+		[]),
+]
+
+heuristics: [
+	projecttype("C",
+		[],
+		[
+		 heuristic("*.c", 30),
+		 heuristic("*.h", 20),
+		]
+	),
+	projecttype("CSharp",
+		[
+		 heuristic(".vs", 100),
+		 heuristic("bin", 5),
+		 heuristic("obj", 5),
+		],
+		[
+		 heuristic("*.cs", 100),
+		 heuristic("*.csproj", 100),
+		 heuristic("*.sln", 5),
+		 heuristic("*.xaml", 5),
+		]
+	),
+	projecttype("D",
+		[
+		 heuristic("zig-cache", 100),
+		 heuristic("zig-out", 100),
+		],
+		[
+		 heuristic("dub.json", 100),
+		 heuristic("*.d", 30),
+		]
+	),
+	projecttype("Dart",
+		[
+		 heuristic(".dart_tool", 100),
+		],
+		[
+		 heuristic("*.dart", 100),
+		]
+	),
+	projecttype("FSharp",
+		[
+		 heuristic(".vs", 100),
+		 heuristic("bin", 5),
+		 heuristic("obj", 5),
+		],
+		[
+		 heuristic("*.fsx", 100),
+		 heuristic("*.fs", 100),
+		 heuristic("*.fsproj", 100),
+		 heuristic("*.sln", 5),
+		 heuristic("*.xaml", 5),
+		]
+	),
+	projecttype("Go",
+		[],
+		[
+		 heuristic("*.go", 100),
+		 heuristic("go.mod", 100),
+		]
+	),
+	projecttype("JavaScript",
+		[],
+		[
+		 heuristic("*.js", 40),
+		 heuristic("*.ts", 10),
+		 heuristic("*.css", 5),
+		]
+	),
+	projecttype("Kotlin",
+		[],
+		[
+		 heuristic("*.kt", 50),
+		 heuristic("*.kts", 20),
+		]
+	),
+	projecttype("PowerShell",
+		[],
+		[
+		 heuristic("*.ps1", 50),
+		]
+	),
+	projecttype("Reason",
+		[
+		 heuristic("_esy", 10),
+		 heuristic("esy.lock", 10),
+		],
+		[
+		 heuristic("*.re", 20),
+		 heuristic("*.rei", 20),
+		]
+	),
+	projecttype("Rust", 
+		[
+		 heuristic("src", 5),
+		 heuristic("target", 5),
+		],
+		[
+		 heuristic("Cargo.toml", 25),
+		 heuristic("Cargo.lock", 5),
+		 heuristic("*.rs", 100),
+		]
+	),
+	projecttype("Zig",
+		[
+		 heuristic("zig-cache", 100),
+		 heuristic("zig-out", 100),
+		],
+		[
+		 heuristic("*.zig", 100),
+		]
+	),
+]
